@@ -10,16 +10,17 @@ import "./index.css";
 const routes = createBrowserRouter([
   {
     path: "/",
-    index: true,
     element: <App />,
-  },
-  {
-    path: "/mainPage",
-    element: <MainPage />,
-  },
-  {
-    path: "/postDetailsPage",
-    element: <PostDetailsPage />,
+    children: [
+      {
+        path: "/",
+        element: <MainPage />,
+      },
+      {
+        path: "postDetailsPage",
+        element: <PostDetailsPage />,
+      },
+    ],
   },
 ]);
 
