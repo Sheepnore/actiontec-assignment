@@ -10,6 +10,7 @@ import "./index.css";
 const routes = createBrowserRouter([
   {
     path: "/",
+    index: true,
     element: <App />,
   },
   {
