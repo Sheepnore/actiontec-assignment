@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import RefreshBtn from "./RefreshBtn";
-import fetchPostData from "../../data/fetchPostData";
+import fetchPostsData from "../../data/fetchPostsData";
 import { Link } from "react-router";
 
 const Posts = () => {
-  const [postData, setPostData] = useState([]);
+  const [postsData, setPostsData] = useState([]);
 
-  // fetch posts datas
+  // fetch posts data
   useEffect(() => {
     const loadData = async () => {
-      const data = await fetchPostData();
-      setPostData(data);
+      const data = await fetchPostsData();
+      setPostsData(data);
     };
     loadData();
   }, []);
@@ -32,7 +32,7 @@ const Posts = () => {
 
         {/* Posts */}
         <tbody className="bg-white">
-          {postData.map((post) => {
+          {postsData.map((post) => {
             return (
               <tr key={post.id} className="border [&>th]:p-4 text-left">
                 <th scope="col">{post.id}</th>

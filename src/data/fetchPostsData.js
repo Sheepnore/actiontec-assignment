@@ -1,6 +1,4 @@
-import React from "react";
-
-export default async function fetchPostData() {
+export default async function fetchPostsData() {
   try {
     const res = await fetch(
       "https://jsonplaceholder.typicode.com/posts?_page=1&_per_page=10"
