@@ -1,15 +1,12 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
-import { Link, Outlet } from "react-router";
-import NavBar from "./ui/NavBar";
+import { Link } from "react-router";
+
 function App() {
   return (
     <>
-      <NavBar></NavBar>
-      <main className="max-w-full min-h-screen p-6 bg-gray-50">
-        <Outlet />
+      <main>
+        <h1>瀏覽貼文</h1>
+        <Link to="/mainPage">Let's Go</Link>
       </main>
     </>
   );

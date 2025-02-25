@@ -3,7 +3,8 @@ import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import App from "./App.jsx";
 import MainPage from "./ui/MainPage/MainPage.jsx";
-import PostDetailsPage from "./ui/PostDetailsPage/PostDetailsPage.jsx";
+import Posts from "./ui/Posts/Posts.jsx";
+import PostDetails from "./ui/Posts/PostDetails.jsx";
 
 import "./index.css";
 
@@ -11,14 +12,18 @@ const routes = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+  },
+  {
+    path: "/mainPage",
+    element: <MainPage />,
     children: [
       {
-        path: "/",
-        element: <MainPage />,
+        path: "/mainPage",
+        element: <Posts />,
       },
       {
-        path: "postDetailsPage",
-        element: <PostDetailsPage />,
+        path: "/mainPage/:postId",
+        element: <PostDetails />,
       },
     ],
   },
