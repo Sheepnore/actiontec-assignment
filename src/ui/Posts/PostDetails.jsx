@@ -1,8 +1,8 @@
-import React from "react";
 import { useParams } from "react-router";
 import fetchPost from "../../data/fetchPost";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import fetchUser from "../../data/fetchUser";
+import Comments from "./Comments";
 
 const PostDetailsPage = () => {
   const param = useParams();
@@ -20,15 +20,15 @@ const PostDetailsPage = () => {
     loading();
   }, []);
 
-  console.log(post);
-  console.log(user);
-
   return (
-    <article className="p-8 grid gap-y-8">
-      <h1 className="text-2xl font-bold">{post.title}</h1>
-      <h3 className="text-gray-500">by {user.username}</h3>
-      <p>{post.body}</p>
-    </article>
+    <>
+      <article className="p-8 grid gap-y-8">
+        <h1 className="text-2xl font-bold">{post.title}</h1>
+        <h3 className="text-gray-500">by {user.username}</h3>
+        <p>{post.body}</p>
+        <Comments postId={post.id} />
+      </article>
+    </>
   );
 };
 

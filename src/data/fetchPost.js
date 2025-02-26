@@ -4,7 +4,6 @@ export default async function fetchPost(postId) {
       `https://jsonplaceholder.typicode.com/posts/${postId}`
     );
     const data = await res.json();
-
     return data;
   } catch (err) {
     console.error(err);
