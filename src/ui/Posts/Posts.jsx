@@ -15,6 +15,8 @@ const Posts = () => {
     loadData();
   }, []);
 
+  console.log(postsData);
+
   return (
     <section className="grid gap-y-8 p-6">
       <div className="flex justify-between">
