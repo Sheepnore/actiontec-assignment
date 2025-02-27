@@ -17,11 +17,13 @@ const Comments = ({ postId }) => {
 
   return (
     <section>
-      <h2>Comments</h2>
+      <h2 className="text-2xl">Comments</h2>
       {comments.length ? (
-        comments.map((comment) => {
-          return <Comment key={comment.id} />;
-        })
+        <div className="grid gap-y-4">
+          {comments.map((comment) => {
+            return <Comment key={comment.id} commentData={comment} />;
+          })}
+        </div>
       ) : (
         <p>loading...</p>
       )}
