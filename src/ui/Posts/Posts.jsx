@@ -2,20 +2,41 @@ import React, { useEffect, useState } from "react";
 import RefreshBtn from "./RefreshBtn";
 import fetchPostsData from "../../data/fetchPostsData";
 import { Link } from "react-router";
+import { fetchUsers } from "../../data/fetchUser";
 
 const Posts = () => {
   const [postsData, setPostsData] = useState([]);
+  const [usersData, setUsersData] = useState([]);
 
-  // fetch posts data
+  // Fetch posts data
   useEffect(() => {
-    const loadData = async () => {
+    const loading = async () => {
       const data = await fetchPostsData();
       setPostsData(data);
     };
-    loadData();
+    loading();
   }, []);
 
-  console.log(postsData);
+  // Fetch all users data
+  useEffect(() => {
+    const loading = async () => {
+      const users = await fetchUsers();
+      setUsersData(users);
+    };
+    loading();
+  }, []);
+
+  function findMatchingUser(post) {
+    const match = usersData.find((user) => post.userId === user.id);
+    return match;
+  }
+
+  console.log("posts:", postsData);
+  console.log("users:", usersData);
+
+  if (!postsData.length || !usersData.length) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <section className="grid gap-y-8 p-6">
@@ -43,7 +64,7 @@ const Posts = () => {
                     {post.title}
                   </Link>
                 </th>
-                <th scope="col">{post.userId}</th>
+                <th scope="col">{findMatchingUser(post).username}</th>
               </tr>
             );
           })}
