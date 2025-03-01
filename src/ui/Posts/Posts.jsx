@@ -8,7 +8,7 @@ const Posts = () => {
   const [postsData, setPostsData] = useState([]);
   const [usersData, setUsersData] = useState([]);
 
-  // Fetch posts data
+  // Fetch posts data on mount
   useEffect(() => {
     const loading = async () => {
       const data = await fetchPostsData();
@@ -17,7 +17,7 @@ const Posts = () => {
     loading();
   }, []);
 
-  // Fetch all users data
+  // Fetch all users data on mount
   useEffect(() => {
     const loading = async () => {
       const users = await fetchUsers();

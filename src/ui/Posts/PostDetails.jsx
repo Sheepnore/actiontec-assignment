@@ -1,4 +1,4 @@
-import { useParams } from "react-router";
+import { useParams, Link } from "react-router";
 import fetchPost from "../../data/fetchPost";
 import { useState, useEffect } from "react";
 import { fetchUser } from "../../data/fetchUser";
@@ -7,45 +7,59 @@ import { useAuth } from "../../auth/AuthContext.jsx";
 
 const PostDetailsPage = () => {
   const param = useParams();
+  const auth = useAuth();
   const [post, setPost] = useState({});
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState({});
+  const [isLoading, setIsLoading] = useState();
 
   // Fetch specific post
   useEffect(() => {
     const loadingPost = async () => {
-      const postData = await fetchPost(param.postId);
-      setPost(postData);
+      try {
+        setIsLoading(true);
+        const postData = await fetchPost(param.postId);
+        setPost(postData);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setIsLoading(false);
+      }
     };
     loadingPost();
   }, [param.postId]);
 
-  // Fetch post data based on userId in post
+  // Fetch user data based on userId in post
   useEffect(() => {
     if (post.userId) {
       const loadingUser = async () => {
-        const userData = await fetchUser(post.userId);
-        setUser(userData);
+        try {
+          setIsLoading(true);
+          const userData = await fetchUser(post.userId);
+          setUser(userData);
+        } catch (err) {
+          console.error(err);
+        } finally {
+          setIsLoading(false);
+        }
       };
       loadingUser();
     }
   }, [post.userId]);
 
-  function isUserLogIn() {
-    const loginUser = useAuth();
-    console.log("loginUser", loginUser);
+  const isUserLogin = auth.userId === post.userId;
 
-    if (loginUser.userId === post.userId) {
-      return true;
-    }
+  if (isLoading) {
+    return <div>loading...</div>;
   }
 
   return (
     <>
       <article className="p-8 grid gap-y-8">
+        <Link to={-1}>Back</Link>
         <h1 className="text-2xl font-bold">{post.title}</h1>
         <h3 className="text-gray-500">by {user.username}</h3>
         <p>{post.body}</p>
-        <Comments postId={post.id} isUserLogIn={isUserLogIn} />
+        <Comments postId={post.id} isUserLogin={isUserLogin} />
       </article>
     </>
   );

@@ -1,11 +1,24 @@
 import React from "react";
 
-const Comment = ({ commentData, isUserLogIn }) => {
+const Comment = ({ commentData, isUserLogin, handleDelete }) => {
+  const commentId = commentData.id;
+  console.log(commentId);
   return (
     <li className="border rounded p-4">
       <h3 className="font-bold">{commentData.name}:</h3>
       <p>{commentData.body}</p>
-      {isUserLogIn() ? <button>Delete</button> : ""}
+      {isUserLogin ? (
+        <button
+          onClick={() => {
+            handleDelete(commentId);
+          }}
+          className="p-3 border rounded-2xl cursor-pointer"
+        >
+          Delete
+        </button>
+      ) : (
+        ""
+      )}
     </li>
   );
 };

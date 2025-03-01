@@ -1,8 +1,8 @@
-import React, { useEffect, useState, use } from "react";
+import React, { useEffect, useState } from "react";
 import Comment from "./Comment";
 import fetchComments from "../../data/fetchComments";
 
-const Comments = ({ postId, isUserLogIn }) => {
+const Comments = ({ postId, isUserLogin }) => {
   const [comments, setComments] = useState([]);
 
   // Fetch comments data based on postId
@@ -14,24 +14,41 @@ const Comments = ({ postId, isUserLogIn }) => {
     loading();
   }, [postId]);
 
+  async function handleDelete(commentId) {
+    // remove deleted comment from state
+    setComments((prevComments) =>
+      prevComments.filter((comment) => comment.id !== commentId)
+    );
+
+    await fetch(`https://jsonplaceholder.typicode.com/comments/${commentId}`, {
+      method: "DELETE",
+    });
+    console.log("You click delete");
+  }
+
+  if (comments.length === 0) {
+    return <p>No comments</p>;
+  }
+
   return (
     <section>
       <h2 className="text-2xl">Comments</h2>
-      {comments.length ? (
-        <ul className="grid gap-y-4">
-          {comments.map((comment) => {
+      <ul className="grid gap-y-4">
+        {!comments.length ? (
+          <p>loading...</p>
+        ) : (
+          comments.map((comment) => {
             return (
               <Comment
                 key={comment.id}
                 commentData={comment}
-                isUserLogIn={isUserLogIn}
+                isUserLogin={isUserLogin}
+                handleDelete={handleDelete}
               />
             );
-          })}
-        </ul>
-      ) : (
-        <p>loading...</p>
-      )}
+          })
+        )}
+      </ul>
     </section>
   );
 };
