@@ -4,7 +4,7 @@ import { Outlet } from "react-router";
 
 const MainPage = () => {
   return (
-    <div className="max-w-full min-h-screen bg-gray-50">
+    <div className="max-w-full min-h-screen bg-gray-50 relative">
       <NavBar />
       <Outlet />
     </div>

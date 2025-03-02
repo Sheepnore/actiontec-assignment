@@ -42,14 +42,14 @@ const Posts = () => {
 
   return (
     <section className="grid gap-y-6 p-6">
-      <div className="flex justify-between">
-        <h1 className="text-2xl">All Posts</h1>
+      <div className="flex justify-between items-center">
+        <h1 className="text-3xl">All Posts</h1>
         <RefreshBtn setPostsData={setPostsData} currentPage={currentPage} />
       </div>
       <MUIPagination setCurrentPage={setCurrentPage} />
-      <div className="border border-separate rounded-2xl overflow-hidden">
-        <table className="w-full ">
-          <thead className="bg-gray-50">
+      <div className="border border-separate rounded-xl overflow-hidden">
+        <table className="w-full">
+          <thead className="bg-gray-200">
             <tr className=" [&>th]:p-4 text-left">
               <th scope="col">Id</th>
               <th scope="col">Title</th>
@@ -61,7 +61,7 @@ const Posts = () => {
           <tbody className="bg-white">
             {postsData.map((post) => {
               return (
-                <tr key={post.id} className="[&>th]:p-4 text-left">
+                <tr key={post.id} className="[&>th]:p-4 text-left border-t">
                   <th scope="col">{post.id}</th>
                   <th scope="col">
                     <Link

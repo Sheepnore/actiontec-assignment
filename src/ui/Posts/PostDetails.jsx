@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { fetchUser } from "../../data/fetchUser";
 import Comments from "./Comments";
 import { useAuth } from "../../auth/AuthContext.jsx";
+import arrow from "../../assets/arrow-left.svg";
 
 const PostDetailsPage = () => {
   const param = useParams();
@@ -55,7 +56,10 @@ const PostDetailsPage = () => {
   return (
     <>
       <article className="p-8 grid gap-y-8">
-        <Link to={"/mainPage"}>Back</Link>
+        <Link to={"/mainPage"} className="flex justify-self-start">
+          <img src={arrow} alt="arrow" />
+          <span>Back</span>
+        </Link>
         <h1 className="text-2xl font-bold">{post.title}</h1>
         <h3 className="text-gray-500">by {user.username}</h3>
         <p>{post.body}</p>
