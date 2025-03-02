@@ -9,8 +9,10 @@ export default function MUIPagination({ setCurrentPage }) {
       color="primary"
       className="flex justify-end"
       variant="outlined"
-      onChange={() => {
-        setCurrentPage((prev) => prev + 1);
+      defaultPage={1}
+      onChange={(_, page) => {
+        console.log(page);
+        setCurrentPage(page);
       }}
     />
   );
