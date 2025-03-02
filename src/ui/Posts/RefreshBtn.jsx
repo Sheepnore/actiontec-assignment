@@ -1,8 +1,15 @@
 import Button from "@mui/material/Button";
-
-export default function RefreshBtn() {
+import { handleRefresh } from "../../utils/refresh";
+export default function RefreshBtn({ setPostsData, currentPage }) {
   return (
-    <Button variant="contained" color="primary" size="large">
+    <Button
+      variant="contained"
+      color="primary"
+      size="large"
+      onClick={() => {
+        handleRefresh(setPostsData, currentPage);
+      }}
+    >
       Refresh
     </Button>
   );

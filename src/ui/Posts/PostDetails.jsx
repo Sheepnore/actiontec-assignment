@@ -55,7 +55,7 @@ const PostDetailsPage = () => {
   return (
     <>
       <article className="p-8 grid gap-y-8">
-        <Link to={-1}>Back</Link>
+        <Link to={"/mainPage"}>Back</Link>
         <h1 className="text-2xl font-bold">{post.title}</h1>
         <h3 className="text-gray-500">by {user.username}</h3>
         <p>{post.body}</p>

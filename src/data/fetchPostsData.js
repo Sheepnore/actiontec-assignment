@@ -1,7 +1,7 @@
-export default async function fetchPostsData() {
+export default async function fetchPostsData(currentPage) {
   try {
     const res = await fetch(
-      "https://jsonplaceholder.typicode.com/posts?_page=1&_per_page=10"
+      `https://jsonplaceholder.typicode.com/posts?_page=${currentPage}&_per_page=10`
     );
 
     // if (!res.ok) {
