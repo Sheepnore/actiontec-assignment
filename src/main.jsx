@@ -9,7 +9,7 @@ import MainPage from "./ui/MainPage/MainPage.jsx";
 import Posts from "./ui/Posts/Posts.jsx";
 import PostDetails from "./ui/Posts/PostDetails.jsx";
 
-import "./App.css";
+import "./index.css";
 // React router setting
 const routes = createBrowserRouter([
   {
