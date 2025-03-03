@@ -32,8 +32,8 @@ const Comments = ({ postId, isUserLogin }) => {
   }
 
   return (
-    <section>
-      <h2 className="text-2xl">Comments</h2>
+    <section className="grid gap-y-4">
+      <h2 className="text-3xl">Comments</h2>
       <ul className="grid gap-y-4">
         {!comments.length ? (
           <Loading />
