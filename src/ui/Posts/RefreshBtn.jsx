@@ -1,5 +1,5 @@
 import Button from "@mui/material/Button";
-import { handleRefresh } from "../../utils/refresh";
+import { handleRefresh } from "../../data/refresh";
 import refreshIcon from "../../assets/refresh-ccw.svg";
 export default function RefreshBtn({ setPostsData, currentPage }) {
   return (
