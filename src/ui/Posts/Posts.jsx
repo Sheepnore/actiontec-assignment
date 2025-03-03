@@ -4,6 +4,7 @@ import MUIPagination from "./Pagination";
 import fetchPostsData from "../../data/fetchPostsData";
 import { Link } from "react-router";
 import { fetchUsers } from "../../data/fetchUser";
+import Loading from "../Loading";
 
 const Posts = () => {
   const [postsData, setPostsData] = useState([]);
@@ -37,7 +38,7 @@ const Posts = () => {
   console.log("users:", usersData);
 
   if (!postsData.length || !usersData.length) {
-    return <p>Loading...</p>;
+    return <Loading />;
   }
 
   return (
@@ -50,7 +51,7 @@ const Posts = () => {
       <div className="border border-separate rounded-xl overflow-hidden">
         <table className="w-full">
           <thead className="bg-gray-200">
-            <tr className=" [&>th]:p-4 text-left">
+            <tr className="[&>th]:p-4 text-left">
               <th scope="col">Id</th>
               <th scope="col">Title</th>
               <th scope="col">User</th>
@@ -61,17 +62,21 @@ const Posts = () => {
           <tbody className="bg-white">
             {postsData.map((post) => {
               return (
-                <tr key={post.id} className="[&>th]:p-4 text-left border-t">
-                  <th scope="col">{post.id}</th>
-                  <th scope="col">
+                <tr key={post.id} className="[&>td]:p-4 text-left border-t">
+                  <td scope="col" className="w-12">
+                    {post.id}
+                  </td>
+                  <td scope="col">
                     <Link
                       to={`/mainPage/${post.id}`}
-                      className="hover:underline"
+                      className="w-full hover:underline"
                     >
                       {post.title}
                     </Link>
-                  </th>
-                  <th scope="col">{findMatchingUser(post).username}</th>
+                  </td>
+                  <td scope="col" className="w-12">
+                    {findMatchingUser(post).username}
+                  </td>
                 </tr>
               );
             })}

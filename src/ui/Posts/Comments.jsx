@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Comment from "./Comment";
 import fetchComments from "../../data/fetchComments";
+import Loading from "../Loading";
 
 const Comments = ({ postId, isUserLogin }) => {
   const [comments, setComments] = useState([]);
@@ -35,7 +36,7 @@ const Comments = ({ postId, isUserLogin }) => {
       <h2 className="text-2xl">Comments</h2>
       <ul className="grid gap-y-4">
         {!comments.length ? (
-          <p>loading...</p>
+          <Loading />
         ) : (
           comments.map((comment) => {
             return (

@@ -8,7 +8,7 @@ export const AuthProvider = ({ children }) => {
     <userContext.Provider value={{ userId }}>{children}</userContext.Provider>
   );
 };
-``;
+
 export const useAuth = () => {
   return useContext(userContext);
 };

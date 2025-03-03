@@ -5,25 +5,27 @@ import { fetchUser } from "../../data/fetchUser";
 import Comments from "./Comments";
 import { useAuth } from "../../auth/AuthContext.jsx";
 import arrow from "../../assets/arrow-left.svg";
+import Loading from "../Loading.jsx";
 
 const PostDetailsPage = () => {
   const param = useParams();
   const auth = useAuth();
   const [post, setPost] = useState({});
   const [user, setUser] = useState({});
-  const [isLoading, setIsLoading] = useState();
+  const [postLoading, setPostLoading] = useState(false);
+  const [userLoading, setUserLoading] = useState(false);
 
   // Fetch specific post
   useEffect(() => {
     const loadingPost = async () => {
       try {
-        setIsLoading(true);
+        setPostLoading(true);
         const postData = await fetchPost(param.postId);
         setPost(postData);
       } catch (err) {
         console.error(err);
       } finally {
-        setIsLoading(false);
+        setPostLoading(false);
       }
     };
     loadingPost();
@@ -34,13 +36,13 @@ const PostDetailsPage = () => {
     if (post.userId) {
       const loadingUser = async () => {
         try {
-          setIsLoading(true);
+          setUserLoading(true);
           const userData = await fetchUser(post.userId);
           setUser(userData);
         } catch (err) {
           console.error(err);
         } finally {
-          setIsLoading(false);
+          setUserLoading(false);
         }
       };
       loadingUser();
@@ -49,14 +51,17 @@ const PostDetailsPage = () => {
 
   const isUserLogin = auth.userId === post.userId;
 
-  if (isLoading) {
-    return <div>loading...</div>;
+  if (postLoading || userLoading) {
+    return <Loading />;
   }
 
   return (
     <>
       <article className="p-8 grid gap-y-8">
-        <Link to={"/mainPage"} className="flex justify-self-start">
+        <Link
+          to={"/mainPage"}
+          className="flex justify-self-start hover:underline"
+        >
           <img src={arrow} alt="arrow" />
           <span>Back</span>
         </Link>

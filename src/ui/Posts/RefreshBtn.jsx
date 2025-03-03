@@ -1,5 +1,6 @@
 import Button from "@mui/material/Button";
 import { handleRefresh } from "../../utils/refresh";
+import refreshIcon from "../../assets/refresh-ccw.svg";
 export default function RefreshBtn({ setPostsData, currentPage }) {
   return (
     <Button
@@ -9,8 +10,10 @@ export default function RefreshBtn({ setPostsData, currentPage }) {
       onClick={() => {
         handleRefresh(setPostsData, currentPage);
       }}
+      className="gap-x-2"
     >
-      Refresh
+      <img src={refreshIcon} alt="refresh-icon" />
+      <span>Refresh</span>
     </Button>
   );
 }

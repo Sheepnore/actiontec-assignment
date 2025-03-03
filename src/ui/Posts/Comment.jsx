@@ -1,5 +1,5 @@
 import React from "react";
-
+import DeleteBtn from "./DeleteBtn";
 const Comment = ({ commentData, isUserLogin, handleDelete }) => {
   const commentId = commentData.id;
   return (
@@ -7,14 +7,11 @@ const Comment = ({ commentData, isUserLogin, handleDelete }) => {
       <h3 className="font-bold">{commentData.name}:</h3>
       <p>{commentData.body}</p>
       {isUserLogin ? (
-        <button
-          onClick={() => {
+        <DeleteBtn
+          handleDelete={() => {
             handleDelete(commentId);
           }}
-          className="p-3 border rounded-2xl cursor-pointer"
-        >
-          Delete
-        </button>
+        ></DeleteBtn>
       ) : (
         ""
       )}
