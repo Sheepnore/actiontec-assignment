@@ -1,6 +1,23 @@
-## Setup Instructions
+A modern React application built with Vite, featuring a clean and efficient development environment.
 
 Visit <https://actiontec-assignment.vercel.app> to see live demo
+
+**Modern Tech Stack**
+
+- React 19 with latest features
+- Vite for fast development and building
+- Material-UI
+- TailwindCSS
+
+**Project Structure**
+
+- Organized directory structure:
+  - `/src/assets` - Static assets
+  - `/src/auth` - Authentication related components
+  - `/src/data` - Data management
+  - `/src/ui` - UI components
+
+## Setup Instructions
 
 1. **Prerequisites**
 
@@ -35,19 +52,20 @@ Visit <https://actiontec-assignment.vercel.app> to see live demo
 
 ## Features
 
-- **Modern Tech Stack**
+- **Posts Management**
 
-  - React 19
-  - Vite for fast development and building
-  - Material-UI components
-  - TailwindCSS
+  - View paginated list of posts from JSONPlaceholder API
+  - View detailed post information
+  - Refresh functionality to update posts data
+  - Comments section for each post
+  - Pagination support (10 posts per page)
 
-- **Project Structure**
-  - Organized directory structure:
-    - `/src/assets` - Static assets
-    - `/src/auth` - Authentication related components
-    - `/src/data` - Data management
-    - `/src/ui` - UI components
+- **User Features**
+
+  - User authentication simulation with environment variables
+  - User-specific actions (e.g., comment management)
+  - View post authors and their usernames
+  - Delete comments functionality for authenticated users
 
 ## Environment Variables
 
